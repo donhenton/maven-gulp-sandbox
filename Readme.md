@@ -1,6 +1,6 @@
 #Maven Gulp Integration
  
-This project demonstrates using using the [maven frontend plugin] 
+This project demonstrates using  the [maven frontend plugin] 
 (https://github.com/eirslett/frontend-maven-plugin/)
 
 The plugin is evoked by the install phase, and is set to write its output
