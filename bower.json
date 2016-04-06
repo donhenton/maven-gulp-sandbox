@@ -1,0 +1,26 @@
+{
+  "name": "maven-gulp-sandbox",
+  "description": "a demo of using maven and gulp",
+  "main": "main.js",
+  "authors": [
+    "Don Henton"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "maven",
+    "gulp",
+    "demo"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
