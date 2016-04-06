@@ -5,12 +5,15 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var replace = require('gulp-html-replace');
 var gutil = require('gulp-util');
+var sass = require('gulp-sass');
+var uglifycss = require('gulp-uglifycss');
+
 
 var app = {
-    cssTarget:'src/main/webapp/resources/css', 
-    jsTarget:'src/main/webapp/resources/js' ,
+    cssTarget: 'src/main/webapp/resources/css',
+    jsTarget: 'src/main/webapp/resources/js',
     jsSource: 'src/main/front-end-source/js',
-    cssSource: 'src/main/front-end-source/css'};
+    sassSource: 'src/main/front-end-source/scss'};
 
 gulp.task('clean', function ( ) {
 
@@ -21,14 +24,32 @@ gulp.task('clean', function ( ) {
 
 gulp.task('minify-copy-js', function () {
 
-    gulp.src([app.jsSource+"/**/*.js",'bower_components/jquery/dist/jquery.js' ])
+    gulp.src([app.jsSource + "/**/*.js", 'bower_components/jquery/dist/jquery.js'])
 
             .pipe(concat('appCode.min.js',
-               {newLine: '\n\/*------------- end concat file--------------------*/\n;'}))
+                    {newLine: '\n\/*------------- end concat file--------------------*/\n;'}))
             .pipe(uglify({mangle: true}))
             .pipe(gulp.dest(app.jsTarget));
 
 });
 
 
-gulp.task('build', ['clean', 'minify-copy-js']);
+gulp.task('minify-copy-sass', function () {
+
+
+
+    gulp.src(app.sassSource+'/**/*.scss')
+            .pipe(sass().on('error', sass.logError))
+            .pipe(concat('app.min.css'))
+            .pipe(uglifycss())
+            .pipe(gulp.dest(app.cssTarget)) 
+
+    ;
+
+});
+
+
+
+
+
+gulp.task('default', ['minify-copy-js','minify-copy-sass']);

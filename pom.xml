@@ -90,6 +90,9 @@
                     </filesets>
                 </configuration>
             </plugin>
+            
+            <!--
+            this uses a plugin that will install node automatically
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
@@ -141,6 +144,57 @@
                 </executions>
                     
             </plugin>
+            -->
+            
+            
+            <!-- this assumes, npm, bower, node, sass, etc are ALREADY INSTALLED -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>exec-npm-install</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <executable>npm</executable>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>exec-bower-install</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <executable>bower</executable>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>exec-gulp</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>gulp</executable>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            
+            
+            
+            
             
             
             
