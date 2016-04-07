@@ -7,11 +7,16 @@ var replace = require('gulp-html-replace');
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var uglifycss = require('gulp-uglifycss');
+var argv = require('yargs').argv;
+
+//must be passed in via pom.xml evocation of this file
+var targetWebappFolder = 'target/'+argv.dir;
+//var targetWebappFolder = 'src/main/webapp/resources/';
 
 
 var app = {
-    cssTarget: 'src/main/webapp/resources/css',
-    jsTarget: 'src/main/webapp/resources/js',
+    cssTarget: targetWebappFolder+'/css',
+    jsTarget: targetWebappFolder+'/js',
     jsSource: 'src/main/front-end-source/js',
     sassSource: 'src/main/front-end-source/scss'};
 

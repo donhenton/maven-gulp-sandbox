@@ -78,18 +78,7 @@
     <build>
         <plugins>
             
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>./src/main/webapp/resources</directory>
-                            
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
+             
             
             <!--
             this uses a plugin that will install node automatically
@@ -199,6 +188,10 @@
                         <phase>prepare-package</phase>
                         <configuration>
                             <executable>gulp</executable>
+                            <arguments>
+                                <argument>--dir</argument>
+                                <argument>${project.artifactId}-${project.version}</argument>
+                            </arguments>
                         </configuration>
                         <goals>
                             <goal>exec</goal>
@@ -207,14 +200,7 @@
                 </executions>
             </plugin>
             
-            
-            
-            
-            
-            
-            
-            
-            
+     
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -227,10 +213,6 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-            
-            
-           
-            
             
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
