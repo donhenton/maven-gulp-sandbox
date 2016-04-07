@@ -62,11 +62,11 @@ function bundle() {
 
 }
 
-gulp.task('browserify-test', function ( ) {
+gulp.task('browserify-js', function ( ) {
 
     bundle()
               .pipe(source('browserify-stuff.min.js'))
-             // .pipe(streamify(uglify()))
+              .pipe(streamify(uglify()))
               .pipe(gulp.dest(app.jsTarget));
 
 });
@@ -77,8 +77,8 @@ gulp.task('minify-copy-js', function () {
     gulp.src([app.jsSource + "/**/*.js", 'bower_components/jquery/dist/jquery.js'])
 
             .pipe(concat('appCode.min.js',
-                    {newLine: '\n\/*------------- end concat file--------------------*/\n;'}))
-            //.pipe(uglify({mangle: true}))
+              {newLine: '\n\/*------------- end concat file--------------------*/\n;'}))
+            .pipe(uglify({mangle: true}))
             .pipe(gulp.dest(app.jsTarget));
 
 });
@@ -111,4 +111,4 @@ gulp.task('minify-copy-sass', function () {
 
 
 //gulp.task('default', ['minify-copy-js','minify-copy-sass']);
-gulp.task('default', ['clean','browserify-test','minify-copy-js','minify-copy-sass' ]);
+gulp.task('default', ['clean','browserify-js','minify-copy-js','minify-copy-sass' ]);
