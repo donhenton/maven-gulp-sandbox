@@ -25,7 +25,6 @@ This pathway is evoked by
 ```
 mvn clean jetty:run-war
 ```
-
 OR
  
 ```
@@ -34,6 +33,6 @@ mvn clean package
 
 The package phase calls a gulp file which prepares front end assets (e.g. sass, 
 minification) and moves them into the appropriate location of the exploded war
-components to eventually be packaged into the war.
+components folder (under the target directory) to eventually be packaged into the war.
 
 
