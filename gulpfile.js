@@ -8,10 +8,36 @@ var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var uglifycss = require('gulp-uglifycss');
 var argv = require('yargs').argv;
+var babelify = require('babelify');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var streamify = require('gulp-streamify');
 
 //must be passed in via pom.xml evocation of this file
 var targetWebappFolder = 'target/'+argv.dir;
 //var targetWebappFolder = 'src/main/webapp/resources/';
+
+var notify = function(error) {
+  var message = 'In: ';
+  var title = 'Error: ';
+
+  if(error.description) {
+    title += error.description;
+  } else if (error.message) {
+    title += error.message;
+  }
+
+  if(error.filename) {
+    var file = error.filename.split('/');
+    message += file[file.length-1];
+  }
+
+  if(error.lineNumber) {
+    message += '\nOn Line: ' + error.lineNumber;
+  }
+  console.log(error);
+  
+};
 
 
 var app = {
@@ -20,11 +46,30 @@ var app = {
     jsSource: 'src/main/front-end-source/js',
     sassSource: 'src/main/front-end-source/scss'};
 
-//gulp.task('clean', function ( ) {
-//
-//    del.sync([app.cssTarget, app.jsTarget]);
-//
-//});
+var bundler = browserify({
+    entries: ['./src/main/front-end-source/browserify-es6/mainFile.js'],
+    transform: [["babelify", { "presets": ["es2015"] }]],
+    extensions: ['.js'],
+    debug: true,
+    cache: {},
+    packageCache: {},
+    fullPaths: true
+});
+function bundle() {
+    return bundler
+            .bundle()
+            .on('error', notify);
+
+}
+
+gulp.task('browserify-test', function ( ) {
+
+    bundle()
+              .pipe(source('browserify-stuff.min.js'))
+             // .pipe(streamify(uglify()))
+              .pipe(gulp.dest(app.jsTarget));
+
+});
 
 
 gulp.task('minify-copy-js', function () {
@@ -33,10 +78,18 @@ gulp.task('minify-copy-js', function () {
 
             .pipe(concat('appCode.min.js',
                     {newLine: '\n\/*------------- end concat file--------------------*/\n;'}))
-            .pipe(uglify({mangle: true}))
+            //.pipe(uglify({mangle: true}))
             .pipe(gulp.dest(app.jsTarget));
 
 });
+
+gulp.task('clean', function ( ) {
+
+    del.sync([ targetWebappFolder]);
+
+});
+
+
 
 
 gulp.task('minify-copy-sass', function () {
@@ -57,4 +110,5 @@ gulp.task('minify-copy-sass', function () {
 
 
 
-gulp.task('default', ['minify-copy-js','minify-copy-sass']);
+//gulp.task('default', ['minify-copy-js','minify-copy-sass']);
+gulp.task('default', ['clean','browserify-test','minify-copy-js','minify-copy-sass' ]);
