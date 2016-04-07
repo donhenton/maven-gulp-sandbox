@@ -13,6 +13,7 @@ var polygonModule = require('./polygonModule');
  */
 
 $('document').ready(function () {
+    //this is the main interface require code must be evoked with new
     window.polygonFactory = new polygonModule();
     //evokePolygon is called by a onclick method in the html page
     window.evokePolygon = function ()
