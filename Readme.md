@@ -1,9 +1,7 @@
 #Maven Gulp Integration
 
-*url for the application*: http://localhost:8090/maven-gulp-sandbox/
+**url for the application**: http://localhost:8090/maven-gulp-sandbox/
 
-
- 
 This project demonstrates using  the [maven frontend plugin] 
 (https://github.com/eirslett/frontend-maven-plugin/)
 
