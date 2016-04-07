@@ -5,8 +5,15 @@
             <displayName>jetty run</displayName>
             <goals>
                 <goal>clean</goal>
-                <goal>war:war</goal>
                 <goal>jetty:run-war</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-package up</actionName>
+            <displayName>package up</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
             </goals>
         </action>
     </actions>
