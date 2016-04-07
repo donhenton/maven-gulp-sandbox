@@ -15,11 +15,11 @@ var app = {
     jsSource: 'src/main/front-end-source/js',
     sassSource: 'src/main/front-end-source/scss'};
 
-gulp.task('clean', function ( ) {
-
-    del.sync([app.cssTarget, app.jsTarget]);
-
-});
+//gulp.task('clean', function ( ) {
+//
+//    del.sync([app.cssTarget, app.jsTarget]);
+//
+//});
 
 
 gulp.task('minify-copy-js', function () {

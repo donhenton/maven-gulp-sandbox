@@ -18,5 +18,11 @@ In the pom.xml a second method is included using simple exec commands to
 execute gulp, sass, npm and bower. This assumes that these items are pre-
 installed.
 
+This pathway is evoked by 
+
+```
+mvn clean jetty:run-war
+```
+
 
  

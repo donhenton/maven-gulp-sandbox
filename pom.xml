@@ -5,7 +5,7 @@
     <groupId>maven-gulp</groupId>
     <artifactId>maven-gulp-sandbox</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>maven-gulp-sandbox</name>
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -146,7 +146,23 @@
             </plugin>
             -->
             
-            
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-war</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- this assumes, npm, bower, node, sass, etc are ALREADY INSTALLED -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -180,7 +196,7 @@
                     </execution>
                     <execution>
                         <id>exec-gulp</id>
-                        <phase>process-resources</phase>
+                        <phase>prepare-package</phase>
                         <configuration>
                             <executable>gulp</executable>
                         </configuration>
@@ -211,14 +227,11 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
+            
+            
+           
+            
+            
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>

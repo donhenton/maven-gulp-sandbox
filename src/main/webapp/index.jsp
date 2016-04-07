@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : Apr 7, 2016, 8:05:40 AM
+    Author     : dhenton
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +22,8 @@
             <div id="green">Green stuff</div>
             
         </section>
-        
+         
+        <p><a href="<%= request.getContextPath() %>/test">Servlet</a></p>
         
         <button onclick="doSomething()">Do Something</button>
         
@@ -26,3 +34,4 @@
         
     </body>
 </html>
+
