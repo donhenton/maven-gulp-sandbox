@@ -25,8 +25,13 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-util": "^3.0.4",
     "merge-stream": "^1.0.0",
+    "reactify": "^1.1.1",
     "shelljs": "^0.2.6",
     "vinyl-source-stream": "^1.1.0",
     "yargs": "^4.4.0"
+  },
+  "dependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }
