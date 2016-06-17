@@ -186,6 +186,7 @@
                     <execution>
                         <id>exec-gulp</id>
                         <phase>prepare-package</phase>
+                        <!-- this evokes the gulp default task and passes the exploded folder name as param 'dir' -->
                         <configuration>
                             <executable>gulp</executable>
                             <arguments>
