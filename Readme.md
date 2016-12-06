@@ -1,4 +1,4 @@
-#Maven Gulp Integration
+#Maven Gulp Integration (not used at this time)
 
 **url for the application**: http://localhost:8090/maven-gulp-sandbox/
 
