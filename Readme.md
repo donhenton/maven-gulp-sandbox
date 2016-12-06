@@ -14,7 +14,7 @@ file (Currently this method is commented out).
 mvn clean install war:war jetty:run
 ```
 
-##Simple Exec Command
+#Simple Exec Command
 
 In the pom.xml a second method is included using simple exec commands to
 execute gulp, sass, npm and bower. This assumes that these items are pre-
